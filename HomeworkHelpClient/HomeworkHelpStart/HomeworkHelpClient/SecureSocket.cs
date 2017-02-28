@@ -8,5 +8,10 @@ namespace HomeworkHelpClient
 {
     class SecureSocket
     {
+        public Socket socket;
+        public SecureSocket(string ip, int port)
+        {
+            socket = new Socket(ip, port);
+        }
     }
 }
