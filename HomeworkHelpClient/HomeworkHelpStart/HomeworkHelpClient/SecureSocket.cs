@@ -13,5 +13,9 @@ namespace HomeworkHelpClient
         {
             socket = new Socket(ip, port);
         }
+        public void SendString(string message)
+        {
+            socket.Send(Encoding.ASCII.GetBytes(message), "message");
+        }
     }
 }
