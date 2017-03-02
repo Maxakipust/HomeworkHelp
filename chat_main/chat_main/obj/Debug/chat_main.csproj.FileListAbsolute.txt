@@ -1,0 +1,9 @@
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\bin\Debug\chat_main.exe.config
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.csprojResolveAssemblyReference.cache
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.Form1.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.Properties.Resources.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.csproj.GenerateResource.Cache
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\bin\Debug\chat_main.exe
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\bin\Debug\chat_main.pdb
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.exe
+C:\Users\Nick\Source\Repos\HomeworkHelp\chat_main\chat_main\obj\Debug\chat_main.pdb

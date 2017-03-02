@@ -25,7 +25,7 @@ namespace chat_main
         void rewrite(string insert)
         {
             string data = System.IO.File.ReadAllText("..\\..\\..\\..\\..\\..\\settings\\settings.inf");
-            string[] sets = data.Split(Environment.NewLine.ToCharArray());
+            string[] sets = data.Split('\0');
             for(int i = 0; i < sets.Length; i++)
             {
                 if (sets[i].StartsWith(insert.Split(':')[0]))
@@ -34,7 +34,7 @@ namespace chat_main
                     break;
                 }
             }
-            data = string.Join(Environment.NewLine, sets);
+            data = string.Join("\0", sets);
             using (System.IO.FileStream fs = System.IO.File.Open("..\\..\\..\\..\\..\\..\\settings\\settings.inf", System.IO.FileMode.Truncate))
             {
                 fs.Write(Encoding.ASCII.GetBytes(data), 0, Encoding.ASCII.GetByteCount(data));
