@@ -1,0 +1,21 @@
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.pdb
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csprojResolveAssemblyReference.cache
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.HHForm.resources
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.Properties.Resources.resources
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.GenerateResource.Cache
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.FirstForm.resources
+E:\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
+E:\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe
+E:\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.pdb
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csprojResolveAssemblyReference.cache
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.FirstForm.resources
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.HHForm.resources
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.Properties.Resources.resources
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.GenerateResource.Cache
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
+E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.SettingsForm.resources
