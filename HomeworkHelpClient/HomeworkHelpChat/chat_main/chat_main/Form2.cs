@@ -21,6 +21,7 @@ namespace chat_main
         {
             if(schoolIn.ToString() != "") rewrite("school:" + schoolIn.Text);
             if(nameIn.ToString() != "") rewrite("name:" + nameIn.Text);
+            this.Close();
         }
         void rewrite(string insert)
         {
@@ -39,6 +40,11 @@ namespace chat_main
             {
                 fs.Write(Encoding.ASCII.GetBytes(data), 0, Encoding.ASCII.GetByteCount(data));
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
