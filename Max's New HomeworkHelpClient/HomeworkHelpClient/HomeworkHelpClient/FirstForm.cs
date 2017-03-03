@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace HomeworkHelpClient
 {
-    public partial class Form1 : Form
+    public partial class FirstForm : Form
     {
+        public FirstForm()
+        {
+            InitializeComponent();
+        }
+
         Label label1;
         ComboBox schoolCombo;
         const int LISTSCHOOLS = 0;
@@ -20,20 +25,15 @@ namespace HomeworkHelpClient
         const int ADDUSER = 2;
         List<ComboBox> Combos = new List<ComboBox>();
         Button addButton;
-        static SecureSocket SS;
         string selectedSchool = "";
         List<string> Classes;
         Button nextButton;
         List<string> ClassesTaken = new List<string>();
         TextBox nameBox;
         Button finButton;
+        
 
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void FirstForm_Load(object sender, EventArgs e)
         {
             /*SS = new SecureSocket("SERVER" ,891);
             SS.SendString("<Command>GetSchools</Command>");
@@ -72,7 +72,7 @@ namespace HomeworkHelpClient
             Combos.Add(CreateCombo(Combos.Count + 1, Classes.ToArray()));
             addButton = CreateAddButton(Combos.Count);
             addButton.Location = new Point(addButton.Location.X, addButton.Location.Y + 24);
-            nextButton = createButton("Next", this.Width-175,this.Height-75, 150, 24);
+            nextButton = createButton("Next", this.Width - 175, this.Height - 75, 150, 24);
             nextButton.Click += NextButton_Click;
         }
 
@@ -80,7 +80,7 @@ namespace HomeworkHelpClient
         {
             bool c = true;
 
-            for(int i = 0; i< Combos.Count; i++)
+            for (int i = 0; i < Combos.Count; i++)
             {
                 if (!Classes.Contains(Combos[i].Text))
                 {
@@ -108,7 +108,7 @@ namespace HomeworkHelpClient
         private void FinButton_Click(object sender, EventArgs e)
         {
             string userName = nameBox.Text;
-            using(FileStream fs = File.Open("..\\..\\..\\..\\..\\settings\\settings.inf", FileMode.Truncate))
+            using (FileStream fs = File.Exists("settings\\settings.inf")? File.Open("settings\\settings.inf", FileMode.Truncate): File.Create("settings\\settings.inf"))
             {
                 string x = $"school:{selectedSchool}\0class:{String.Join(",", ClassesTaken.Distinct().ToArray())}\0name:{userName}";
                 fs.Write(Encoding.ASCII.GetBytes(x), 0, Encoding.ASCII.GetByteCount(x));
@@ -130,7 +130,7 @@ namespace HomeworkHelpClient
 
         private void B_Click(object sender, EventArgs e)
         {
-            Combos.Add(CreateCombo(Combos.Count+1, Classes.ToArray()));
+            Combos.Add(CreateCombo(Combos.Count + 1, Classes.ToArray()));
         }
 
         private ComboBox CreateCombo(int i, object[] items)
@@ -139,7 +139,7 @@ namespace HomeworkHelpClient
             c.Parent = panel1;
             c.Width = 150;
             c.Height = 24;
-            c.Location = new Point((this.Width - c.Width) / 2, (i * (c.Height + 15))+label1.Height+15);
+            c.Location = new Point((this.Width - c.Width) / 2, (i * (c.Height + 15)) + label1.Height + 15);
             c.Items.AddRange(items);
             c.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             c.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -155,11 +155,11 @@ namespace HomeworkHelpClient
             cb.AutoCompleteSource = AutoCompleteSource.ListItems;
             l.Height = 24;
             l.Parent = panel1;
-            cb.Location = new Point((this.Width - cb.Width) / 2, (this.Height - (cb.Height+l.Height)) / 2);
+            cb.Location = new Point((this.Width - cb.Width) / 2, (this.Height - (cb.Height + l.Height)) / 2);
             l.Location = new Point((this.Width - cb.Width) / 2, (this.Height - (cb.Height - l.Height)) / 2);
         }
 
-        private Button createButton(string text,int x, int y, int width, int height)
+        private Button createButton(string text, int x, int y, int width, int height)
         {
             Button b = new Button();
             b.Parent = this;

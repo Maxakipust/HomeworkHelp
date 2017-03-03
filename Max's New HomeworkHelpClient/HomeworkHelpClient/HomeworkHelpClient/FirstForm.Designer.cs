@@ -1,6 +1,6 @@
 ﻿namespace HomeworkHelpClient
 {
-    partial class Form1
+    partial class FirstForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,22 +34,21 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 382);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(296, 382);
+            this.panel1.TabIndex = 1;
             // 
-            // Form1
+            // FirstForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(296, 446);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Form1";
-            this.Text = "Homework Help";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "FirstForm";
+            this.Text = "HomeworkHelp";
+            this.Load += new System.EventHandler(this.FirstForm_Load);
             this.ResumeLayout(false);
 
         }
@@ -59,4 +58,3 @@
         private System.Windows.Forms.Panel panel1;
     }
 }
-

@@ -15,20 +15,16 @@ namespace HomeworkHelpClient
     {
         public TcpClient Client;
         private NetworkStream NetStream;
-        private BackgroundWorker ListenWorker;
+        //private BackgroundWorker ListenWorker;
 
         public Socket(string ip, int port)
         {
             Client = new TcpClient();
             Client.Connect(ip, port);
-            ListenWorker = new BackgroundWorker();
-            ListenWorker.DoWork += ListenWorker_DoWork;
-            ListenWorker.RunWorkerCompleted += ListenWorker_RunWorkerCompleted;
-        }
-
-        private void ListenWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            ListenWorker.RunWorkerAsync();
+            NetStream = Client.GetStream();
+            //ListenWorker = new BackgroundWorker();
+            //ListenWorker.DoWork += ListenWorker_DoWork;
+            //ListenWorker.RunWorkerCompleted += ListenWorker_RunWorkerCompleted;
         }
 
         public bool Send(byte[] data, string dataType)
@@ -65,7 +61,7 @@ namespace HomeworkHelpClient
             }
         }
 
-        public void ListenWorker_DoWork(object sender, DoWorkEventArgs e)
+        public int Listen(ref byte[] data, ref string dataType)
         {
             int bytesRead = 0;
             int bufferSize = 1024;
@@ -82,10 +78,10 @@ namespace HomeworkHelpClient
 
             byte[] type = new byte[typeLength];
             bytesRead += NetStream.Read(type, 0, typeLength);//type
-            string dataType = Encoding.ASCII.GetString(type);
+            dataType = Encoding.ASCII.GetString(type);
 
             int bytesLeft = dataLength;
-            byte[] data = new byte[dataLength];
+            data = new byte[dataLength];
 
             while (bytesLeft > 0)
             {
@@ -94,7 +90,7 @@ namespace HomeworkHelpClient
                 allBytesRead += bytesRead;
                 bytesLeft -= bytesRead;
             }
-            
+            return allBytesRead;
         }
     }
 }
