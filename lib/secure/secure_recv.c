@@ -2,6 +2,9 @@
 
 #include <string.h>
 
+#include "../error/error.h"
+#include "secure_makenonce.h"
+
 Secure_PlainText Secure_Decrypt(Secure_Session *session,
     Secure_CipherText ciphertext, size_t len)
 {

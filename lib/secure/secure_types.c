@@ -1,5 +1,8 @@
 #include "secure_types.h"
+
 #include <string.h>
+
+#include "../error/error.h"
 
 int Secure_GenKeys(Secure_PubKey pub, Secure_PrivKey priv)
 {

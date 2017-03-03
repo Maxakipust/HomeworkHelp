@@ -1,5 +1,6 @@
 #include "secure_connect.h"
 
+#include "../error/error.h"
 #include "secure_makenonce.h"
 
 int Secure_ConnectSocket(Secure_Session *session, Net_Addr addr, Net_Port port)

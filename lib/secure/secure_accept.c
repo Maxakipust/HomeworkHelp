@@ -1,5 +1,6 @@
 #include "secure_accept.h"
 
+#include "../error/error.h"
 #include "secure_makenonce.h"
 
 int Secure_AcceptSocket(Secure_Session *session, Secure_Server server)

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 
+#include "../error/error.h"
 #include "network.h"
 
 Secure_Nonce Secure_SendNoncePart(Secure_Session *session)
