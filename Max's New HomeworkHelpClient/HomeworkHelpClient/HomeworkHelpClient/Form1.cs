@@ -13,10 +13,12 @@ namespace HomeworkHelpClient
 {
     public partial class HHForm : Form
     {
+        List<privateChat> chats;
         List<string> classes;
         List<string> settings;
         classContainer cc;
         SettingsForm settingsForm;
+        Sucure_Socket ss;
 
         public HHForm()
         {
@@ -25,7 +27,7 @@ namespace HomeworkHelpClient
 
         private void HHForm_Load(object sender, EventArgs e)
         {
-            Sucure_Socket ss = new Sucure_Socket(10,newData);
+            ss = new Sucure_Socket(10,newData);
             
             settingsForm = new SettingsForm();
             settingsForm.FormClosed += SettingsForm_FormClosed;
@@ -59,53 +61,38 @@ namespace HomeworkHelpClient
         {
 
         }
+
         private void actTutorClick(string name)
         {
-            //label1.Text = "Connecting you with someone in need";
-            //textBox1.Enabled = true;
-            //button1.Enabled = true;
+            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "offHelp");
         }
         private void getTutorClick(string name)
         {
-            //label1.Text = "Connecting you with someone to help";
-            //textBox1.Enabled = true;
-            //button1.Enabled = true;
+            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "reqHelp");
         }
         private void classChatClick(string name)
         {
-            //label1.Text = $"Chating with {name}";
-            //textBox1.Enabled = true;
-            //button1.Enabled = true;
+            ss.sendString(settings[0].Split(':')[1] + "\0" + name + "\01","lobCon");
         }
 
         private void editClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.Show();
         }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog SFD = new SaveFileDialog();
-            SFD.FileName = cc.openClass;
-            SFD.AddExtension = true;
-            SFD.Filter = "Text File|*.txt";
-            if(DialogResult.OK== SFD.ShowDialog())
-            {
-                using (FileStream fs = File.Exists(SFD.FileName) ? File.Open(SFD.FileName,FileMode.Truncate) : File.Create(SFD.FileName))
-                {
-                    //fs.Write(Encoding.ASCII.GetBytes(richTextBox1.Text), 0, Encoding.ASCII.GetByteCount(richTextBox1.Text));
-                }
-            }
-        }
         private void newData(byte[] data, string type)
         {
-            if (type.StartsWith("cLobMes"))
+            if (type.StartsWith("cMes"))
             {
-                
-            }
-            else if (type.StartsWith("cPMes"))
-            {
-
+                string with = type.Split('\0')[1];
+                for(int i = 0; i< chats.Count; i++)
+                {
+                    if(chats[i].Text == with)
+                    {
+                        chats[i].onGetMessage(Encoding.ASCII.GetString(data));
+                        break;
+                    }
+                }
+                chats.Add(new privateChat(with));
             }
             else if (type.StartsWith("error"))
             {

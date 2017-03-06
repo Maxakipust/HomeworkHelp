@@ -30,3 +30,4 @@ C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHe
 C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
 C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe
 C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.privateChat.resources

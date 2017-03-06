@@ -12,12 +12,15 @@ namespace HomeworkHelpClient
 {
     public partial class privateChat : Form
     {
-        Sucure_Socket _socket;
-        public privateChat(string with, Sucure_Socket socket)
+        
+        public privateChat(string with)
         {
             InitializeComponent();
             this.Text = with;
-            _socket = socket;
+        }
+        public void onGetMessage(string data)
+        {
+            richTextBox1.Text += data;
         }
     }
 }
