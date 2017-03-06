@@ -22,7 +22,6 @@ namespace HomeworkHelpClient
                 Application.Run(new FirstForm());
             }
             Application.Run(new HHForm());
-
         }
     }
 }
