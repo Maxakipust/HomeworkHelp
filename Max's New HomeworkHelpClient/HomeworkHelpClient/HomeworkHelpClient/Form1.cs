@@ -13,9 +13,12 @@ namespace HomeworkHelpClient
 {
     public partial class HHForm : Form
     {
+        List<privateChat> chats;
+        List<string> classes;
         List<string> settings;
         classContainer cc;
         SettingsForm settingsForm;
+        Sucure_Socket ss;
 
         public HHForm()
         {
@@ -24,11 +27,13 @@ namespace HomeworkHelpClient
 
         private void HHForm_Load(object sender, EventArgs e)
         {
+            ss = new Sucure_Socket(10,newData);
+            
             settingsForm = new SettingsForm();
             settingsForm.FormClosed += SettingsForm_FormClosed;
             cc = new classContainer(buttonShowClick,actTutorClick,getTutorClick,classChatClick);
             settings = File.ReadAllText("settings\\settings.inf").Split('\0').ToList();
-            List<string> classes = GetSetting("class").Split(',').ToList();
+            classes = GetSetting("class").Split(',').ToList();
             for(int i = 0; i< classes.Count; i++)
             {
                 cc.add(classes[i], panel1);
@@ -52,52 +57,48 @@ namespace HomeworkHelpClient
             return "";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Text = cc.classes[0].getWidth().ToString()+":"+panel1.Width;
-        }
-
         private void buttonShowClick(string name)
         {
 
         }
+
         private void actTutorClick(string name)
         {
-            label1.Text = "Connecting you with someone in need";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "offHelp");
         }
         private void getTutorClick(string name)
         {
-            label1.Text = "Connecting you with someone to help";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "reqHelp");
         }
         private void classChatClick(string name)
         {
-            label1.Text = $"Chating with {name}";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            ss.sendString(settings[0].Split(':')[1] + "\0" + name + "\01","lobCon");
         }
 
         private void editClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.Show();
         }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newData(byte[] data, string type)
         {
-            SaveFileDialog SFD = new SaveFileDialog();
-            SFD.FileName = cc.openClass;
-            SFD.AddExtension = true;
-            SFD.Filter = "Text File|*.txt";
-            if(DialogResult.OK== SFD.ShowDialog())
+            if (type.StartsWith("cMes"))
             {
-                using (FileStream fs = File.Exists(SFD.FileName) ? File.Open(SFD.FileName,FileMode.Truncate) : File.Create(SFD.FileName))
+                string with = type.Split('\0')[1];
+                for(int i = 0; i< chats.Count; i++)
                 {
-                    fs.Write(Encoding.ASCII.GetBytes(richTextBox1.Text), 0, Encoding.ASCII.GetByteCount(richTextBox1.Text));
+                    if(chats[i].Text == with)
+                    {
+                        chats[i].onGetMessage(Encoding.ASCII.GetString(data));
+                        break;
+                    }
                 }
+                chats.Add(new privateChat(with));
             }
+            else if (type.StartsWith("error"))
+            {
+                throw new Exception(Encoding.ASCII.GetString(data));
+            }
+            
         }
     }
 }
