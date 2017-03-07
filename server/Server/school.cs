@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Server
 {
     class school
     {
         public string name;
-        public List<string> classes = new List<string>();
+        public List<lobbyNames> classes = new List<lobbyNames>();
 
-        public school(string classLists, string _name)
+        public school(string _name)
         {
             name = _name;
-            classes = classLists.Split('\0').ToList();
+            foreach (string line in File.ReadAllLines(name))
+            {
+                string newName = line;
+                classes.Add(new lobbyNames(newName));
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Server
         private BackgroundWorker AcceptWorker;
         public string hostIP;
         public List<school> schools;
+   
 
         public TcpServerContainer(IPEndPoint ep)
         {
@@ -22,7 +23,7 @@ namespace Server
 
             for (int i = 0; i< schoolFileNames.Length; i++)
             {
-                schools.Add(new school(File.ReadAllText(schoolFileNames[i]), schoolFileNames[i].Substring(schoolFileNames[i].LastIndexOf("\\"))));
+                schools.Add(new school(schoolFileNames[i].Substring(schoolFileNames[i].LastIndexOf("\\"))));
             }
 
             Listener = new TcpListener(ep);

@@ -12,7 +12,7 @@ namespace Server
 {
     class TcpSocketServer
     {
-        public int id;
+        public int id = 0;
         public TcpClient client;
         private NetworkStream NetStream;
         private BackgroundWorker ListenWorker;
