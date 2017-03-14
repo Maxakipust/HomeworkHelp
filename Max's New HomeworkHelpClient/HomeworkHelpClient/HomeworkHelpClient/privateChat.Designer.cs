@@ -61,13 +61,13 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
             this.printToolStripMenuItem.Text = "Print";
             // 
             // richTextBox1
@@ -85,6 +85,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(687, 63);
             this.textBox1.TabIndex = 2;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // button1
             // 
@@ -94,6 +95,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // privateChat
             // 
@@ -107,6 +109,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "privateChat";
             this.Text = "privateChat";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.privateChat_FormClosing);
+            this.Load += new System.EventHandler(this.privateChat_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -8,12 +8,12 @@ namespace TCPChatClient
 {
     class Program
     {
-        static TCPChatClient client;
+        static ChatClient client;
         static void Main(string[] args)
         {
             Console.Write("Name: ");
             Console.Title = "Chat";
-            client = new TCPChatClient(40, rec, Console.ReadLine());
+            client = new ChatClient(40, rec, Console.ReadLine());
             Console.Title += " " + client.N;
             Console.WriteLine("connected "+client.client.Client.RemoteEndPoint.ToString());
             client.send(Encoding.ASCII.GetBytes(client.N), "name");

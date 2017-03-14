@@ -13,12 +13,11 @@ namespace HomeworkHelpClient
 {
     public partial class HHForm : Form
     {
-        List<privateChat> chats;
-        List<string> classes;
-        List<string> settings;
+        Settings settings;
         classContainer cc;
         SettingsForm settingsForm;
-        Sucure_Socket ss;
+        ChatClient ss;
+        List<privateChat> ch = new List<privateChat>();
 
         public HHForm()
         {
@@ -27,17 +26,15 @@ namespace HomeworkHelpClient
 
         private void HHForm_Load(object sender, EventArgs e)
         {
-            ss = new Sucure_Socket(10,newData);
-            
+            settings = new Settings();
             settingsForm = new SettingsForm();
             settingsForm.FormClosed += SettingsForm_FormClosed;
             cc = new classContainer(buttonShowClick,actTutorClick,getTutorClick,classChatClick);
-            settings = File.ReadAllText("settings\\settings.inf").Split('\0').ToList();
-            classes = GetSetting("class").Split(',').ToList();
-            for(int i = 0; i< classes.Count; i++)
+            for(int i = 0; i< settings.GetSetting("class").Split(',').Length; i++)
             {
-                cc.add(classes[i], panel1);
+                cc.add(settings.GetSetting("class").Split(',')[i], panel1);
             }
+            ss = new ChatClient(10, newData,settings.GetSetting("name"));
         }
 
         private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -45,17 +42,7 @@ namespace HomeworkHelpClient
             settingsForm = new SettingsForm();
         }
 
-        private string GetSetting(string name)
-        {
-            for(int i = 0; i < settings.Count; i++)
-            {
-                if (settings[i].StartsWith(name))
-                {
-                    return settings[i].Split(':')[1];
-                }
-            }
-            return "";
-        }
+        
 
         private void buttonShowClick(string name)
         {
@@ -64,39 +51,40 @@ namespace HomeworkHelpClient
 
         private void actTutorClick(string name)
         {
-            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "offHelp");
+            //ss.sendString(settings.GetSetting("school") + "\0" +name, "offHelp");
         }
         private void getTutorClick(string name)
         {
-            ss.sendString(settings[2].Split(':')[1] + "\0" + settings[1].Split(':')[1], "reqHelp");
+            //ss.sendString(settings.GetSetting("school")+"\0" + name, "reqHelp");
         }
         private void classChatClick(string name)
         {
-            ss.sendString(settings[0].Split(':')[1] + "\0" + name + "\01","lobCon");
+            //ss.sendString(settings.GetSetting("school") + "\0" + name + "\01","lobCon");
+            ch.Add(new privateChat(name, ss, settings));
+            ch[ch.Count - 1].Show();
         }
 
         private void editClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.Show();
         }
-        private void newData(byte[] data, string type)
+        private void newData(string data, string type)
         {
             if (type.StartsWith("cMes"))
             {
                 string with = type.Split('\0')[1];
-                for(int i = 0; i< chats.Count; i++)
+                for (int i = 0; i < ch.Count; i++)
                 {
-                    if(chats[i].Text == with)
+                    if (ch[i].Text == with)
                     {
-                        chats[i].onGetMessage(Encoding.ASCII.GetString(data));
+                        ch[i].onGetMessage(data);
                         break;
                     }
                 }
-                chats.Add(new privateChat(with));
             }
             else if (type.StartsWith("error"))
             {
-                throw new Exception(Encoding.ASCII.GetString(data));
+                throw new Exception(data);
             }
             
         }

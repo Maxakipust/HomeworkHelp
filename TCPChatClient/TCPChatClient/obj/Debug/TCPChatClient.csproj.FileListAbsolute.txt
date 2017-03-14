@@ -16,3 +16,9 @@ C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.pdb
 C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe
 C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.pdb
 C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.csprojResolveAssemblyReference.cache
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.csprojResolveAssemblyReference.cache
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe.config
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.pdb

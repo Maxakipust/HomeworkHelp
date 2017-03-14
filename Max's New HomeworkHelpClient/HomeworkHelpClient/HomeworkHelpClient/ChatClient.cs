@@ -8,15 +8,15 @@ using System.Net.Sockets;
 using System.ComponentModel;
 using System.IO;
 
-class ChatClient
+public class ChatClient
 {
     private NetworkStream NetStream;
     public TcpClient client;
     public BackgroundWorker ListenWorker = new BackgroundWorker();
-    public Action<string> onMsg;
+    public Action<string,string> onMsg;
     public string N = "";
 
-    public ChatClient(int port, Action<string> onMessage, string name)
+    public ChatClient(int port, Action<string,string> onMessage, string name)
     {
         N = name;
         onMsg = onMessage;
@@ -101,9 +101,10 @@ class ChatClient
             allBytesRead += bytesRead;
             bytesLeft -= bytesRead;
         }
-        if (dataType == "text")//text
-        {
-            onMsg(Encoding.ASCII.GetString(data));
-        }
+        onMsg(Encoding.ASCII.GetString(data),dataType);
+    }
+    public void sendString(string data, string type)
+    {
+        send(Encoding.ASCII.GetBytes(data), type);
     }
 }
