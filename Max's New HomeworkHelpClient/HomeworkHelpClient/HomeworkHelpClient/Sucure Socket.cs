@@ -100,7 +100,6 @@ namespace HomeworkHelpClient
 
         public void send(byte[] data, string dataType)
         {
-            File.ReadAllLines("hfiods").ToList();
             string test = Encoding.ASCII.GetString(data);
             int bufferSize = 1024;
             byte[] dataLength = BitConverter.GetBytes(data.Length);//length

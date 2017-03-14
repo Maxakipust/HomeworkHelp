@@ -1,0 +1,18 @@
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe.config
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.pdb
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.csprojResolveAssemblyReference.cache
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.pdb
+F:\C#\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe.config
+F:\C#\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.exe
+F:\C#\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.pdb
+F:\C#\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe
+F:\C#\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.pdb
+F:\C#\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.csprojResolveAssemblyReference.cache
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe.config
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.exe
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.pdb
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.exe
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\bin\Debug\TCPChatClient.pdb
+C:\Users\Max K\Desktop\TCPChatClient\TCPChatClient\obj\Debug\TCPChatClient.csprojResolveAssemblyReference.cache
