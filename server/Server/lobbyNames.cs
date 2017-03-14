@@ -9,7 +9,7 @@ namespace Server
 {
     class lobbyNames
     {
-        List<string> inLobby = new List<string>();
+        public List<string> inLobby = new List<string>();
         public string className;
 
         public lobbyNames(string newName)

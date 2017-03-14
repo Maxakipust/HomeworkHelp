@@ -21,9 +21,9 @@ namespace Server
         public string savedDir = "";
         public bool screencast = false;
         public bool Control = false;
-        public Action<byte[], string> _onReceiveData;
+        public Action<string, string> _onReceiveData;
 
-        public TcpSocketServer(TcpClient Socket, Action<byte[],string> onReceiveData)
+        public TcpSocketServer(TcpClient Socket, Action<string,string> onReceiveData)
         {
             client = Socket;
             NetStream = client.GetStream();
@@ -77,7 +77,7 @@ namespace Server
                 allBytesRead += bytesRead;
                 bytesLeft -= bytesRead;
             }
-            _onReceiveData(data, dataType);
+            _onReceiveData(Encoding.ASCII.GetString(data), dataType);
         }
 
         public void send(byte[] data,string dataType)
