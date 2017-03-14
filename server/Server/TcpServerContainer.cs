@@ -14,17 +14,12 @@ namespace Server
         private TcpListener Listener;
         private BackgroundWorker AcceptWorker;
         public string hostIP;
-        public List<school> schools;
-   
+        private Action<string, string> msgEvent;
 
-        public TcpServerContainer(IPEndPoint ep)
+        public TcpServerContainer(IPEndPoint ep, Action<string,string> msgGot)
         {
-            string[] schoolFileNames = Directory.GetFiles("Schools");
-
-            for (int i = 0; i< schoolFileNames.Length; i++)
-            {
-                schools.Add(new school(schoolFileNames[i].Substring(schoolFileNames[i].LastIndexOf("\\"))));
-            }
+            msgEvent = msgGot;
+            
 
             Listener = new TcpListener(ep);
             Listener.Start();
@@ -63,40 +58,8 @@ namespace Server
         }
         void AcceptWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),receiveData));
-            sendString(Servers.Count, Servers[Servers.Count].id.ToString(), "ID");
-        }
-        public void receiveData(byte[] data, string type)
-        {
-            if (type.StartsWith("lobCon"))
-            {
-                string[] args = Encoding.ASCII.GetString(data).Split('\0');
-                string fileData = System.IO.File.ReadAllText("lobList.inf");
-            }
-            if (type.StartsWith("lobMes"))
-            {
-
-            }
-            if (type.StartsWith("pMes"))
-            {
-
-            }
-            if (type.StartsWith("offHelp"))
-            {
-
-            }
-            if (type.StartsWith("reqHelp"))
-            {
-
-            }
-            if (type.StartsWith("nameEdit"))
-            {
-
-            }
-            if (type.StartsWith("errMes"))
-            {
-
-            }
+            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent));
+            sendString(Servers.Count, Servers[Servers.Count-1].id.ToString(), "ID");
         }
 
         public void updateServers()
@@ -123,8 +86,8 @@ namespace Server
 
         public void sendString(int index, string data, string type)
         {
-            if(index>-1)
-                Servers[index].send(Encoding.ASCII.GetBytes(data), type);
+            if(index>0)
+                Servers[index-1].send(Encoding.ASCII.GetBytes(data), type);
         }
     }
 }
