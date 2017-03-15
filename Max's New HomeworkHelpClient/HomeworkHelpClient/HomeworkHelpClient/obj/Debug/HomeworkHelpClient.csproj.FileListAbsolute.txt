@@ -19,3 +19,6 @@ E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.Gen
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.SettingsForm.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
