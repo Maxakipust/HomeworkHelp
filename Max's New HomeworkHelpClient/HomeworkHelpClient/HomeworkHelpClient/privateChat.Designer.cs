@@ -74,6 +74,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(0, 31);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(823, 485);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
@@ -85,7 +86,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(687, 63);
             this.textBox1.TabIndex = 2;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // button1
             // 
