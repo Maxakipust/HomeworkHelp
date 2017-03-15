@@ -18,6 +18,7 @@ namespace HomeworkHelpClient
         SettingsForm settingsForm;
         ChatClient ss;
         List<privateChat> ch = new List<privateChat>();
+        delegate void gmsg(string data); 
 
         public HHForm()
         {
@@ -70,14 +71,15 @@ namespace HomeworkHelpClient
         }
         private void newData(string data, string type)
         {
-            if (type.StartsWith("cMes"))
+            if (type.StartsWith("cLobMes"))
             {
-                string with = type.Split('\0')[1];
+                string with = data.Split('\0')[1];
                 for (int i = 0; i < ch.Count; i++)
                 {
                     if (ch[i].Text == with)
                     {
-                        ch[i].onGetMessage(data);
+                        gmsg d = ch[i].onGetMessage;
+                        Invoke(d,new object[] { data });
                         break;
                     }
                 }

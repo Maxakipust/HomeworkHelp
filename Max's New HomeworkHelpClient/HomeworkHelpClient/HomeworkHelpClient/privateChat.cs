@@ -24,7 +24,7 @@ namespace HomeworkHelpClient
         }
         public void onGetMessage(string data)
         {
-            richTextBox1.Text += data+Environment.NewLine;
+            richTextBox1.Text += data.Split('\0')[2]+": "+data.Split('\0')[3]+Environment.NewLine;
             richTextBox1.SelectionLength = richTextBox1.Text.Length;
             richTextBox1.ScrollToCaret();
         }
@@ -43,15 +43,6 @@ namespace HomeworkHelpClient
         {
             Client.sendString(setting.GetSetting("school") + "\0" + this.Text + "\0" + setting.GetSetting("name") +"\0"+ textBox1.Text, "lobMes");
             textBox1.Text = "";
-        }
-
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter||e.KeyCode == Keys.Return)
-            {
-                Client.sendString(setting.GetSetting("school") + "\0" + this.Text + "\0" + setting.GetSetting("name") + "\0" + textBox1.Text, "lobMes");
-                textBox1.Text = "";
-            }
         }
     }
 }
