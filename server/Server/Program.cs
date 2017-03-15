@@ -29,6 +29,7 @@ namespace Server
         }
         static void receiveData(string data, string type)
         {
+            Console.WriteLine(data + ":" + type);
             if (type.StartsWith("lobCon"))
             {
                 string[] args = data.Split('\0');
