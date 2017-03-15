@@ -57,15 +57,16 @@
             // editClassesToolStripMenuItem
             // 
             this.editClassesToolStripMenuItem.Name = "editClassesToolStripMenuItem";
-            this.editClassesToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.editClassesToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.editClassesToolStripMenuItem.Text = "Settings";
             this.editClassesToolStripMenuItem.Click += new System.EventHandler(this.editClassesToolStripMenuItem_Click);
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(242, 192);
+            this.panel1.Size = new System.Drawing.Size(242, 195);
             this.panel1.TabIndex = 3;
             // 
             // HHForm

@@ -4,3 +4,9 @@ C:\Users\Nick\Source\Repos\HomeworkHelp\server\Server\bin\Debug\Server.pdb
 C:\Users\Nick\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Nick\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.exe
 C:\Users\Nick\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\bin\Debug\Server.exe.config
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\bin\Debug\Server.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\bin\Debug\Server.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\server\Server\obj\Debug\Server.pdb

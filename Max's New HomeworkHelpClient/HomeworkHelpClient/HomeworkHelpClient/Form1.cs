@@ -41,6 +41,13 @@ namespace HomeworkHelpClient
         private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             settingsForm = new SettingsForm();
+            settings = new Settings();
+            cc.del();
+            cc = new classContainer(buttonShowClick, actTutorClick, getTutorClick, classChatClick);
+            for (int i = 0; i < settings.GetSetting("class").Split(',').Length; i++)
+            {
+                cc.add(settings.GetSetting("class").Split(',')[i], panel1);
+            }
         }
 
         
