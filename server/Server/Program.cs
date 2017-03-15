@@ -116,9 +116,16 @@ namespace Server
                     }
                 }
             }
-            if (type.StartsWith("pMes"))
+            if (type.StartsWith("rClass"))
             {
-
+                List<string> listOfClasses = new List<string>();
+                for(int i = 0; i < enumeratedSchools[0].classes.Count; i++)
+                {
+                    listOfClasses.Add(enumeratedSchools[0].classes[i].className);
+                }
+                listOfClasses.Sort();
+                string toSend = string.Join("\0", listOfClasses.ToArray());
+                cc.sendString(servIndex, toSend, "crClass");
             }
             if (type.StartsWith("offHelp"))
             {
