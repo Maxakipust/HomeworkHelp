@@ -47,7 +47,7 @@ namespace HomeworkHelpClient
             label1.Text = "Select Your School";
             schoolCombo.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             CreateCenteredComboAndText(ref schoolCombo, ref label1);
-            string schoolsStr = "Mountain View High School,Orem High School,Mercer Island High School";
+            string schoolsStr = "Mountain View High School";
             List<string> schools = schoolsStr.Split(',').ToList<string>();
             schoolCombo.Items.AddRange(schools.ToArray());
         }
@@ -67,8 +67,14 @@ namespace HomeworkHelpClient
             //string type = "";
             //int bytesRead = SS.socket.Listen(ref bytes, ref type);
             //string classesStr = Encoding.ASCII.GetString(bytes);
-            string classStr = "AP Calculus AB,AP Calculus BC,Spanish 1,Spanish 2,Spanish 3";
-            Classes = classStr.Split(',').ToList<string>();
+            List<string> classStr = new List<string>();
+            foreach (string line in File.ReadAllLines("settings//" + "Mountain View High School" + ".inf"))
+            {
+                string newName = line;
+                classStr.Add(newName);
+            }
+            classStr.Sort();
+            Classes = classStr.ToList<string>();
             Combos.Add(CreateCombo(Combos.Count + 1, Classes.ToArray()));
             addButton = CreateAddButton(Combos.Count);
             addButton.Location = new Point(addButton.Location.X, addButton.Location.Y + 24);
