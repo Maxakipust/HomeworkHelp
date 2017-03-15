@@ -127,22 +127,22 @@ public class Encryptor
         return PublicKeyBox.GenerateKeyPair();
     }
 
-    public static byte[] Encrypt(byte[] message, KeyPair keypair)
+    public static byte[] Encrypt(byte[] message, byte[] yourPrivateKey, byte[] theirPublicKey)
     {
         var nonce = PublicKeyBox.GenerateNonce();
-        var cipher = PublicKeyBox.Create(message, nonce, keypair.PrivateKey, keypair.PublicKey);
+        var cipher = PublicKeyBox.Create(message, nonce, yourPrivateKey, theirPublicKey);
         var output = new byte[nonce.Length + cipher.Length];
         nonce.CopyTo(output, 0);
         cipher.CopyTo(output, cipher.Length);
         return output;
     }
 
-    public static byte[] Decrypt(byte[] cipherText, KeyPair keypair)
+    public static byte[] Decrypt(byte[] cipherText, byte[] yourPrivateKey, byte[] theirPublicKey)
     {
         var nonce = new byte[24];
         var cipher = new byte[cipherText.Length - 24];
         Array.Copy(cipherText, nonce, 24);
         Array.Copy(cipherText, 24, cipher, 0, cipherText.Length - 24);
-        return PublicKeyBox.Open(cipher, nonce, keypair.PrivateKey, keypair.PublicKey);
+        return PublicKeyBox.Open(cipher, nonce, yourPrivateKey, theirPublicKey);
     }
 }
