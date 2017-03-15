@@ -9,6 +9,7 @@ namespace Server
     class nameToSocketIndex
     {
         List<string> names = new List<string>();
+        public Dictionary<string, int> index = new Dictionary<string, int>();
         public nameToSocketIndex()
         {
 

@@ -14,9 +14,9 @@ namespace Server
         private TcpListener Listener;
         private BackgroundWorker AcceptWorker;
         public string hostIP;
-        private Action<string, string> msgEvent;
+        private Action<string, string,int> msgEvent;
 
-        public TcpServerContainer(IPEndPoint ep, Action<string,string> msgGot)
+        public TcpServerContainer(IPEndPoint ep, Action<string,string,int> msgGot)
         {
             msgEvent = msgGot;
             
@@ -58,8 +58,12 @@ namespace Server
         }
         void AcceptWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent,leave));
+            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent,leave, getIndex));
             //sendString(Servers.Count, Servers[Servers.Count-1].id.ToString(), "ID");
+        }
+        public int getIndex(TcpSocketServer server)
+        {
+            return Servers.IndexOf(server);
         }
         public void leave(TcpSocketServer serv)
         {

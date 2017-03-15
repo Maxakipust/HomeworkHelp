@@ -21,12 +21,14 @@ namespace Server
         public string savedDir = "";
         public bool screencast = false;
         public bool Control = false;
-        public Action<string, string> _onReceiveData;
+        public Action<string, string, int> _onReceiveData;
         public Action<TcpSocketServer> onLeave;
         public bool on = true;
+        public Func<TcpSocketServer,int> getIndex;
 
-        public TcpSocketServer(TcpClient Socket, Action<string,string> onReceiveData,Action<TcpSocketServer> Leave)
+        public TcpSocketServer(TcpClient Socket, Action<string,string,int> onReceiveData,Action<TcpSocketServer> Leave, Func<TcpSocketServer,int> getindx)
         {
+            getIndex = getindx;
             onLeave = Leave;
             client = Socket;
             NetStream = client.GetStream();
@@ -82,7 +84,7 @@ namespace Server
                     allBytesRead += bytesRead;
                     bytesLeft -= bytesRead;
                 }
-                _onReceiveData(Encoding.ASCII.GetString(data), dataType);
+                _onReceiveData(Encoding.ASCII.GetString(data), dataType,getIndex(this));
             }
             catch (IOException ex)
             {

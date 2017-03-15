@@ -30,17 +30,17 @@ namespace Server
             }
             Console.ReadLine();
         }
-        static void receiveData(string data, string type)
+        static void receiveData(string data, string type, int servIndex)
         {
             Console.WriteLine(data + ":" + type);
             if (type.StartsWith("lobCon"))
             {
                 string[] args = data.Split('\0');
-                socketNames.addName(args[2]);
                 string fileData = System.IO.File.ReadAllText("lobList.inf");
                 if (args[3] == "1")
                 {
-                    for(int i = 0; i < enumeratedSchools.Count; i++)
+                    socketNames.index.Add(args[2], servIndex);
+                    for (int i = 0; i < enumeratedSchools.Count; i++)
                     {
                         if (enumeratedSchools[i].name == args[0])
                         {
@@ -51,6 +51,10 @@ namespace Server
                                 {
                                     int classIndex = j;
                                     enumeratedSchools[schoolIndex].classes[classIndex].addToLobby(args[2]);
+                                    for (int m = 0; m < enumeratedSchools[schoolIndex].classes[classIndex].inLobby.Count; m++)
+                                    {
+                                        cc.sendString(enumeratedSchools[schoolIndex].classes[classIndex].inLobby[m])
+                                    }
                                 }
                             }
                         }
@@ -70,6 +74,7 @@ namespace Server
                                     int classIndex = j;
                                     
                                     enumeratedSchools[schoolIndex].classes[classIndex].removeFromLobby(args[2]);
+                                    socketNames.index.Remove(args[2]);
                                 }
                             }
                         }
@@ -90,13 +95,12 @@ namespace Server
                             if (enumeratedSchools[schoolIndex].classes[j].className == args[1])
                             {
                                 int classIndex = j;
-                                string part1 = enumeratedSchools[schoolIndex].name + "\0" + enumeratedSchools[schoolIndex].classes[classIndex].className + "\0";
+                                string[] lobbyNames = enumeratedSchools[schoolIndex].classes[classIndex].inLobby.ToArray();
                                 for (int k = 0; k < enumeratedSchools[schoolIndex].classes[j].inLobby.Count; k++)
                                 {
                                     if (enumeratedSchools[schoolIndex].classes[classIndex].inLobby[k] != null)
-                                    {
-                                        string part2 = args[2] + "\0" + args[3];
-                                        cc.sendString(socketNames.returnIndex(enumeratedSchools[schoolIndex].classes[classIndex].inLobby[k]), part1 + part2, "cLobMes");
+                                    { 
+                                        cc.sendString(socketNames.index[lobbyNames[k]], data, "cLobMes");
                                     }
                                 }
                             }
