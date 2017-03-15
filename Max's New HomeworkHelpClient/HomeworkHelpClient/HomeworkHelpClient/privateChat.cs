@@ -29,6 +29,13 @@ namespace HomeworkHelpClient
             richTextBox1.SelectionStart = richTextBox1.TextLength;
             richTextBox1.ScrollToCaret();
         }
+        public void onGetlog(string data)
+        {
+            data = data.Split('\0')[1];
+            richTextBox1.Text += data + Environment.NewLine;
+            richTextBox1.SelectionStart = richTextBox1.TextLength;
+            richTextBox1.ScrollToCaret();
+        }
 
         private void privateChat_Load(object sender, EventArgs e)
         {

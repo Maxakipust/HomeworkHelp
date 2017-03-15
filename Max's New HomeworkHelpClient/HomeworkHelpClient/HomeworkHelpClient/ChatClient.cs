@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.ComponentModel;
 using System.IO;
+using Sodium;
 
 public class ChatClient
 {
@@ -15,9 +16,11 @@ public class ChatClient
     public BackgroundWorker ListenWorker = new BackgroundWorker();
     public Action<string,string> onMsg;
     public string N = "";
+    private KeyPair KP;
 
     public ChatClient(int port, Action<string,string> onMessage, string name)
     {
+        KP = Encryptor.GenerateKeyPair();
         N = name;
         onMsg = onMessage;
         string x = File.ReadAllText("IP.txt");
@@ -44,6 +47,7 @@ public class ChatClient
 
     public void send(byte[] data, string dataType)
     {
+        Encryptor.Encrypt(data, KP);
         int bufferSize = 1024;
         byte[] dataLength = BitConverter.GetBytes(data.Length);//length
         byte[] dataTypeArr = Encoding.ASCII.GetBytes(dataType);//type
@@ -103,6 +107,7 @@ public class ChatClient
                 allBytesRead += bytesRead;
                 bytesLeft -= bytesRead;
             }
+            data = Encryptor.Decrypt(data, KP);
             onMsg(Encoding.ASCII.GetString(data), dataType);
         }
         catch
@@ -113,5 +118,31 @@ public class ChatClient
     public void sendString(string data, string type)
     {
         send(Encoding.ASCII.GetBytes(data), type);
+    }
+}
+public class Encryptor
+{
+    public static KeyPair GenerateKeyPair()
+    {
+        return PublicKeyBox.GenerateKeyPair();
+    }
+
+    public static byte[] Encrypt(byte[] message, KeyPair keypair)
+    {
+        var nonce = PublicKeyBox.GenerateNonce();
+        var cipher = PublicKeyBox.Create(message, nonce, keypair.PrivateKey, keypair.PublicKey);
+        var output = new byte[nonce.Length + cipher.Length];
+        nonce.CopyTo(output, 0);
+        cipher.CopyTo(output, cipher.Length);
+        return output;
+    }
+
+    public static byte[] Decrypt(byte[] cipherText, KeyPair keypair)
+    {
+        var nonce = new byte[24];
+        var cipher = new byte[cipherText.Length - 24];
+        Array.Copy(cipherText, nonce, 24);
+        Array.Copy(cipherText, 24, cipher, 0, cipherText.Length - 24);
+        return PublicKeyBox.Open(cipher, nonce, keypair.PrivateKey, keypair.PublicKey);
     }
 }

@@ -18,7 +18,8 @@ namespace HomeworkHelpClient
         SettingsForm settingsForm;
         ChatClient ss;
         List<privateChat> ch = new List<privateChat>();
-        delegate void gmsg(string data); 
+        delegate void gmsg(string data);
+        delegate void glog(string msg);
 
         public HHForm()
         {
@@ -91,11 +92,27 @@ namespace HomeworkHelpClient
                     }
                 }
             }
+            else if (type.StartsWith("bLog"))
+            {
+                string with = data.Split('\0')[0];
+                for (int i = 0; i < ch.Count; i++)
+                {
+                    if (ch[i].Text == with)
+                    {
+                        glog d = ch[i].onGetlog;
+                        Invoke(d, new object[] { data });
+                        break;
+                    }
+                }
+            }
+            else if (type.StartsWith("crClass"))
+            {
+
+            }
             else if (type.StartsWith("error"))
             {
                 throw new Exception(data);
             }
-            
         }
     }
 }
