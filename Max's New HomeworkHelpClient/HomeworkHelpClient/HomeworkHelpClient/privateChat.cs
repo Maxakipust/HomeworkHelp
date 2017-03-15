@@ -49,7 +49,7 @@ namespace HomeworkHelpClient
         {
             if(e.KeyCode == Keys.Enter||e.KeyCode == Keys.Return)
             {
-                Client.sendString(textBox1.Text, setting.GetSetting("school") + "\0" + this.Text);
+                Client.sendString(setting.GetSetting("school") + "\0" + this.Text + "\0" + setting.GetSetting("name") + "\0" + textBox1.Text, "lobMes");
                 textBox1.Text = "";
             }
         }

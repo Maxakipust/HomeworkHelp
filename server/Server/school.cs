@@ -15,7 +15,7 @@ namespace Server
         public school(string _name)
         {
             name = _name;
-            foreach (string line in File.ReadAllLines(name))
+            foreach (string line in File.ReadAllLines("Schools//" + name + ".inf"))
             {
                 string newName = line;
                 classes.Add(new lobbyNames(newName));
