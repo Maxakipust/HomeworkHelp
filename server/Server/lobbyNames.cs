@@ -11,6 +11,7 @@ namespace Server
     {
         public List<string> inLobby = new List<string>();
         public string className;
+        public string backLog;
 
         public lobbyNames(string newName)
         {
@@ -24,6 +25,14 @@ namespace Server
         {
             if (inLobby.Contains(name))
                 inLobby[inLobby.IndexOf(name)]=null;
+        }
+        public void addToLog(string message)
+        {
+            backLog += Environment.NewLine + message;
+        }
+        public string createBLogData()
+        {
+            return className + "\0" + backLog;
         }
     }
 }

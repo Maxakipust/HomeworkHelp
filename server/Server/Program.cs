@@ -37,7 +37,6 @@ namespace Server
                 string fileData = System.IO.File.ReadAllText("lobList.inf");
                 if (args[3] == "1")
                 {
-                    socketNames.index.Add(args[2], servIndex);
                     for (int i = 0; i < enumeratedSchools.Count; i++)
                     {
                         if (enumeratedSchools[i].name == args[0])
@@ -48,11 +47,14 @@ namespace Server
                                 if (enumeratedSchools[schoolIndex].classes[j].className == args[1])
                                 {
                                     int classIndex = j;
+                                    socketNames.index.Add(args[2], servIndex);
                                     enumeratedSchools[schoolIndex].classes[classIndex].addToLobby(args[2]);
+                                    cc.sendString(servIndex, enumeratedSchools[schoolIndex].classes[classIndex].createBLogData(), "bLog");
                                     for (int m = 0; m < enumeratedSchools[schoolIndex].classes[classIndex].inLobby.Count; m++)
                                     {
-                                        cc.sendString(enumeratedSchools[schoolIndex].classes[classIndex].inLobby[m])
+                                        cc.sendString(socketNames.index[enumeratedSchools[schoolIndex].classes[classIndex].inLobby[m]], args[0] + "\0" + args[1] + "\0" + "Server" + "\0" + args[2]+" has entered the lobby.", "cLobMes");
                                     }
+                                    enumeratedSchools[schoolIndex].classes[classIndex].addToLog("Server: " + args[2] + " has entered the lobby.");
                                 }
                             }
                         }
@@ -71,8 +73,13 @@ namespace Server
                                 {
                                     int classIndex = j;
                                     
-                                    enumeratedSchools[schoolIndex].classes[classIndex].removeFromLobby(args[2]);
+                                    for (int n = 0; n < enumeratedSchools[schoolIndex].classes[classIndex].inLobby.Count; n++)
+                                    {
+                                        if (enumeratedSchools[schoolIndex].classes[classIndex].inLobby.Count > 0) cc.sendString(socketNames.index[enumeratedSchools[schoolIndex].classes[classIndex].inLobby[n]], args[0] + "\0" + args[1] + "\0" + "Server" + "\0" + args[2] + " has exited the lobby.", "cLobMes");
+                                    }
+                                    enumeratedSchools[schoolIndex].classes[classIndex].inLobby.Remove(args[2]);
                                     socketNames.index.Remove(args[2]);
+                                    enumeratedSchools[schoolIndex].classes[classIndex].addToLog("Server: " + args[2] + " has exited the lobby.");
                                 }
                             }
                         }
@@ -101,6 +108,7 @@ namespace Server
                                         cc.sendString(socketNames.index[lobbyNames[k]], data, "cLobMes");
                                     }
                                 }
+                                enumeratedSchools[schoolIndex].classes[classIndex].addToLog(args[2] + ": "+ args[3]);
                             }
                         }
                     }
