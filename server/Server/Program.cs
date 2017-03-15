@@ -15,7 +15,9 @@ namespace Server
 
 
         static nameToSocketIndex socketNames = new nameToSocketIndex();
-        static TcpServerContainer cc = new TcpServerContainer(new IPEndPoint(Dns.Resolve(Dns.GetHostName()).AddressList[0],10), receiveData);
+
+        //static TcpServerContainer cc = new TcpServerContainer(new IPEndPoint(Dns.Resolve(Dns.GetHostName()).AddressList[0],10), receiveData);
+        static TcpServerContainer cc = new TcpServerContainer(new IPEndPoint(IPAddress.Parse("172.20.10.3"), 10), receiveData);
         static List<school> enumeratedSchools = new List<school>();
         static void Main(string[] args)
         {

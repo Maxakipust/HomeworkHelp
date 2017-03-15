@@ -16,6 +16,15 @@ namespace HomeworkHelpClient
         Action<string> _getTutorClick;
         Action<string> _classChatClick;
 
+        public void del()
+        {
+            for(int i =0;i< classes.Count; i++)
+            {
+                classes[i].panel.Visible = false;
+                classes[i].showButton.Visible = false;
+            }
+        }
+
         public classContainer(Action<string> showClick, Action<string> actTutorClick, Action<string> getTutorClick, Action<string> classChatClick)
         {
             _showClick = showClick;

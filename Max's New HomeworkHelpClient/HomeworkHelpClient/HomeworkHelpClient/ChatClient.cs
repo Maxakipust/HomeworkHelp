@@ -74,34 +74,41 @@ public class ChatClient
 
     public void ListenWorker_DoWork(object sender, DoWorkEventArgs e)
     {
-        int bytesRead = 0;
-        int bufferSize = 1024;
-        int allBytesRead = 0;
-
-        byte[] length = new byte[4];
-        byte[] typeLengthArr = new byte[4];
-
-        bytesRead = NetStream.Read(length, 0, 4);//length
-        int dataLength = BitConverter.ToInt32(length, 0);
-
-        bytesRead += NetStream.Read(typeLengthArr, 0, 4);//typeLength
-        int typeLength = BitConverter.ToInt32(typeLengthArr, 0);
-
-        byte[] type = new byte[typeLength];
-        bytesRead += NetStream.Read(type, 0, typeLength);//type
-        string dataType = Encoding.ASCII.GetString(type);
-
-        int bytesLeft = dataLength;
-        byte[] data = new byte[dataLength];
-
-        while (bytesLeft > 0)
+        try
         {
-            int nextPacketSize = (bytesLeft > bufferSize) ? bufferSize : bytesLeft;
-            bytesRead = NetStream.Read(data, allBytesRead, nextPacketSize);
-            allBytesRead += bytesRead;
-            bytesLeft -= bytesRead;
+            int bytesRead = 0;
+            int bufferSize = 1024;
+            int allBytesRead = 0;
+
+            byte[] length = new byte[4];
+            byte[] typeLengthArr = new byte[4];
+
+            bytesRead = NetStream.Read(length, 0, 4);//length
+            int dataLength = BitConverter.ToInt32(length, 0);
+
+            bytesRead += NetStream.Read(typeLengthArr, 0, 4);//typeLength
+            int typeLength = BitConverter.ToInt32(typeLengthArr, 0);
+
+            byte[] type = new byte[typeLength];
+            bytesRead += NetStream.Read(type, 0, typeLength);//type
+            string dataType = Encoding.ASCII.GetString(type);
+
+            int bytesLeft = dataLength;
+            byte[] data = new byte[dataLength];
+
+            while (bytesLeft > 0)
+            {
+                int nextPacketSize = (bytesLeft > bufferSize) ? bufferSize : bytesLeft;
+                bytesRead = NetStream.Read(data, allBytesRead, nextPacketSize);
+                allBytesRead += bytesRead;
+                bytesLeft -= bytesRead;
+            }
+            onMsg(Encoding.ASCII.GetString(data), dataType);
         }
-        onMsg(Encoding.ASCII.GetString(data),dataType);
+        catch
+        {
+
+        }
     }
     public void sendString(string data, string type)
     {
