@@ -25,7 +25,7 @@ namespace HomeworkHelpClient
         public void onGetMessage(string data)
         {
             richTextBox1.Text += data.Split('\0')[2]+": "+data.Split('\0')[3]+Environment.NewLine;
-            richTextBox1.SelectionLength = richTextBox1.Text.Length;
+            richTextBox1.SelectionLength = richTextBox1.TextLength;
             richTextBox1.ScrollToCaret();
         }
 
