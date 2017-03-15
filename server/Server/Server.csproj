@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Sodium">
+      <HintPath>..\..\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\Sodium.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.ComponentModel;
 using System.IO;
+using Sodium;
 
 namespace Server
 {
@@ -25,9 +26,11 @@ namespace Server
         public Action<TcpSocketServer> onLeave;
         public bool on = true;
         public Func<TcpSocketServer,int> getIndex;
+        private KeyPair KP;
 
         public TcpSocketServer(TcpClient Socket, Action<string,string,int> onReceiveData,Action<TcpSocketServer> Leave, Func<TcpSocketServer,int> getindx)
         {
+            KP = Encryptor.GenerateKeyPair();
             getIndex = getindx;
             onLeave = Leave;
             client = Socket;
@@ -84,6 +87,7 @@ namespace Server
                     allBytesRead += bytesRead;
                     bytesLeft -= bytesRead;
                 }
+                data = Encryptor.Decrypt(data, KP);
                 _onReceiveData(Encoding.ASCII.GetString(data), dataType,getIndex(this));
             }
             catch (IOException ex)
@@ -95,6 +99,7 @@ namespace Server
 
         public void send(byte[] data,string dataType)
         {
+            data = Encryptor.Encrypt(data, KP);
             int bufferSize = 1024;
             byte[] dataLength = BitConverter.GetBytes(data.Length);//length
             byte[] dataTypeArr = Encoding.ASCII.GetBytes(dataType);//type
@@ -116,6 +121,32 @@ namespace Server
                 bytesSent += packetSize;
                 bytesLeft -= packetSize;
             }
+        }
+    }
+    public class Encryptor
+    {
+        public static KeyPair GenerateKeyPair()
+        {
+            return PublicKeyBox.GenerateKeyPair();
+        }
+
+        public static byte[] Encrypt(byte[] message, KeyPair keypair)
+        {
+            var nonce = PublicKeyBox.GenerateNonce();
+            var cipher = PublicKeyBox.Create(message, nonce, keypair.PrivateKey, keypair.PublicKey);
+            var output = new byte[nonce.Length + cipher.Length];
+            nonce.CopyTo(output, 0);
+            cipher.CopyTo(output, cipher.Length);
+            return output;
+        }
+
+        public static byte[] Decrypt(byte[] cipherText, KeyPair keypair)
+        {
+            var nonce = new byte[24];
+            var cipher = new byte[cipherText.Length - 24];
+            Array.Copy(cipherText, nonce, 24);
+            Array.Copy(cipherText, 24, cipher, 0, cipherText.Length - 24);
+            return PublicKeyBox.Open(cipher, nonce, keypair.PrivateKey, keypair.PublicKey);
         }
     }
 }
