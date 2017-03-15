@@ -58,8 +58,17 @@ namespace Server
         }
         void AcceptWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent));
+            Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent,leave));
             //sendString(Servers.Count, Servers[Servers.Count-1].id.ToString(), "ID");
+        }
+        public void leave(TcpSocketServer serv)
+        {
+
+            int c = Servers.IndexOf(serv);
+            Servers[c].client.Client.Close();
+            Servers[c].on = false;
+            Servers[c] = null;
+            //Servers.RemoveAt(c);
         }
 
         public void updateServers()
@@ -69,7 +78,8 @@ namespace Server
                 if (!Servers[i].client.Connected)
                 {
                     Servers[i].client.Close();
-                    Servers.RemoveAt(i);
+                    Servers[i].on = false;
+                    //Servers.RemoveAt(i);
                 }
             }
         }
@@ -87,6 +97,7 @@ namespace Server
         public void sendString(int index, string data, string type)
         {
             if(index>-1)
+                if(Servers[index]!=null)
                 Servers[index].send(Encoding.ASCII.GetBytes(data), type);
         }
     }

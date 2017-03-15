@@ -22,9 +22,12 @@ namespace Server
         public bool screencast = false;
         public bool Control = false;
         public Action<string, string> _onReceiveData;
+        public Action<TcpSocketServer> onLeave;
+        public bool on = true;
 
-        public TcpSocketServer(TcpClient Socket, Action<string,string> onReceiveData)
+        public TcpSocketServer(TcpClient Socket, Action<string,string> onReceiveData,Action<TcpSocketServer> Leave)
         {
+            onLeave = Leave;
             client = Socket;
             NetStream = client.GetStream();
             ListenWorker = new BackgroundWorker();
@@ -45,6 +48,7 @@ namespace Server
 
         public void ListenWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (on)
             ListenWorker.RunWorkerAsync();
         }
 
@@ -56,28 +60,35 @@ namespace Server
 
             byte[] length = new byte[4];
             byte[] typeLengthArr = new byte[4];
-
-            bytesRead = NetStream.Read(length, 0, 4);//length
-            int dataLength = BitConverter.ToInt32(length, 0);
-
-            bytesRead += NetStream.Read(typeLengthArr, 0, 4);//typeLength
-            int typeLength = BitConverter.ToInt32(typeLengthArr, 0);
-
-            byte[] type = new byte[typeLength];
-            bytesRead += NetStream.Read(type, 0, typeLength);//type
-            string dataType = Encoding.ASCII.GetString(type);
-
-            int bytesLeft = dataLength;
-            byte[] data = new byte[dataLength];
-
-            while (bytesLeft > 0)
+            try
             {
-                int nextPacketSize = (bytesLeft > bufferSize) ? bufferSize : bytesLeft;
-                bytesRead = NetStream.Read(data, allBytesRead, nextPacketSize);
-                allBytesRead += bytesRead;
-                bytesLeft -= bytesRead;
+                bytesRead = NetStream.Read(length, 0, 4);//length
+                int dataLength = BitConverter.ToInt32(length, 0);
+
+                bytesRead += NetStream.Read(typeLengthArr, 0, 4);//typeLength
+                int typeLength = BitConverter.ToInt32(typeLengthArr, 0);
+
+                byte[] type = new byte[typeLength];
+                bytesRead += NetStream.Read(type, 0, typeLength);//type
+                string dataType = Encoding.ASCII.GetString(type);
+
+                int bytesLeft = dataLength;
+                byte[] data = new byte[dataLength];
+
+                while (bytesLeft > 0)
+                {
+                    int nextPacketSize = (bytesLeft > bufferSize) ? bufferSize : bytesLeft;
+                    bytesRead = NetStream.Read(data, allBytesRead, nextPacketSize);
+                    allBytesRead += bytesRead;
+                    bytesLeft -= bytesRead;
+                }
+                _onReceiveData(Encoding.ASCII.GetString(data), dataType);
             }
-            _onReceiveData(Encoding.ASCII.GetString(data), dataType);
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+                onLeave(this);
+            }
         }
 
         public void send(byte[] data,string dataType)
