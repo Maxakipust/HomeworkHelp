@@ -33,7 +33,7 @@ namespace Server
 
         public List<string> getIPs()
         {
-            //updateServers();
+            updateServers();
             List<string> ret = new List<string>();
             for(int i = 0; i< Servers.Count; i++)
             {
@@ -63,14 +63,14 @@ namespace Server
         }
         public void leave(TcpSocketServer serv)
         {
+
             int c = Servers.IndexOf(serv);
-            Program.socketNames.index[c] = -1;
-            Program.socketNames.names[c] = null;
+            Servers[c].client.Client.Close();
             Servers[c].on = false;
             Servers[c] = null;
             //Servers.RemoveAt(c);
         }
-        /*
+
         public void updateServers()
         {
             for (int i = 0; i < Servers.Count; i++)
@@ -83,7 +83,6 @@ namespace Server
                 }
             }
         }
-        */
 
         public void send(int index,byte[] data,string type)
         {

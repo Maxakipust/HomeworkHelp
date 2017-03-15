@@ -20,7 +20,6 @@ namespace HomeworkHelpClient
             setting = s;
             Client = cc;
             InitializeComponent();
-            button1.Text = "Send";
             this.Text = with;
         }
         public void onGetMessage(string data)
