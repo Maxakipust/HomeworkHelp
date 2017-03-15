@@ -24,7 +24,11 @@ namespace Server
         {
             for (int i = 0; i < inLobby.Count; i++)
             {
-                if (inLobby[i] == name) inLobby[i] = "\0";
+                if (inLobby[i] == name)
+                {
+                    inLobby[i] = "\0";
+                    break;
+                }
             }
         }
     }

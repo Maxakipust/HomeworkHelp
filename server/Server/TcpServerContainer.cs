@@ -64,8 +64,8 @@ namespace Server
         public void leave(TcpSocketServer serv)
         {
             int c = Servers.IndexOf(serv);
-            Program.socketNames.names[c] = "\0";
-            Servers[c].client.Client.Close();
+            Program.socketNames.index[c] = -1;
+            Program.socketNames.names[c] = null;
             Servers[c].on = false;
             Servers[c] = null;
             //Servers.RemoveAt(c);

@@ -21,5 +21,13 @@ namespace Server
                 classes.Add(new lobbyNames(newName));
             }
         }
+        public int whichClassIndex(string classNameQuery)
+        {
+            for (int i = 0; i < classes.Count; i++)
+            {
+                if (classes[i].className == classNameQuery) return i;
+            }
+            return -1;
+        }
     }
 }
