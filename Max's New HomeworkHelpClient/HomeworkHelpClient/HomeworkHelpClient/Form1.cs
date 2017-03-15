@@ -13,9 +13,12 @@ namespace HomeworkHelpClient
 {
     public partial class HHForm : Form
     {
-        List<string> settings;
+        Settings settings;
         classContainer cc;
         SettingsForm settingsForm;
+        ChatClient ss;
+        List<privateChat> ch = new List<privateChat>();
+        delegate void gmsg(string data); 
 
         public HHForm()
         {
@@ -24,15 +27,15 @@ namespace HomeworkHelpClient
 
         private void HHForm_Load(object sender, EventArgs e)
         {
+            settings = new Settings();
             settingsForm = new SettingsForm();
             settingsForm.FormClosed += SettingsForm_FormClosed;
             cc = new classContainer(buttonShowClick,actTutorClick,getTutorClick,classChatClick);
-            settings = File.ReadAllText("settings\\settings.inf").Split('\0').ToList();
-            List<string> classes = GetSetting("class").Split(',').ToList();
-            for(int i = 0; i< classes.Count; i++)
+            for(int i = 0; i< settings.GetSetting("class").Split(',').Length; i++)
             {
-                cc.add(classes[i], panel1);
+                cc.add(settings.GetSetting("class").Split(',')[i], panel1);
             }
+            ss = new ChatClient(10, newData,settings.GetSetting("name"));
         }
 
         private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -40,64 +43,52 @@ namespace HomeworkHelpClient
             settingsForm = new SettingsForm();
         }
 
-        private string GetSetting(string name)
-        {
-            for(int i = 0; i < settings.Count; i++)
-            {
-                if (settings[i].StartsWith(name))
-                {
-                    return settings[i].Split(':')[1];
-                }
-            }
-            return "";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Text = cc.classes[0].getWidth().ToString()+":"+panel1.Width;
-        }
+        
 
         private void buttonShowClick(string name)
         {
 
         }
+
         private void actTutorClick(string name)
         {
-            label1.Text = "Connecting you with someone in need";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            //ss.sendString(settings.GetSetting("school") + "\0" +name, "offHelp");
         }
         private void getTutorClick(string name)
         {
-            label1.Text = "Connecting you with someone to help";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            //ss.sendString(settings.GetSetting("school")+"\0" + name, "reqHelp");
         }
         private void classChatClick(string name)
         {
-            label1.Text = $"Chating with {name}";
-            textBox1.Enabled = true;
-            button1.Enabled = true;
+            //ss.sendString(settings.GetSetting("school") + "\0" + name + "\01","lobCon");
+            ch.Add(new privateChat(name, ss, settings));
+            ch[ch.Count - 1].Show();
         }
 
         private void editClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.Show();
         }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newData(string data, string type)
         {
-            SaveFileDialog SFD = new SaveFileDialog();
-            SFD.FileName = cc.openClass;
-            SFD.AddExtension = true;
-            SFD.Filter = "Text File|*.txt";
-            if(DialogResult.OK== SFD.ShowDialog())
+            if (type.StartsWith("cLobMes"))
             {
-                using (FileStream fs = File.Exists(SFD.FileName) ? File.Open(SFD.FileName,FileMode.Truncate) : File.Create(SFD.FileName))
+                string with = data.Split('\0')[1];
+                for (int i = 0; i < ch.Count; i++)
                 {
-                    fs.Write(Encoding.ASCII.GetBytes(richTextBox1.Text), 0, Encoding.ASCII.GetByteCount(richTextBox1.Text));
+                    if (ch[i].Text == with)
+                    {
+                        gmsg d = ch[i].onGetMessage;
+                        Invoke(d,new object[] { data });
+                        break;
+                    }
                 }
             }
+            else if (type.StartsWith("error"))
+            {
+                throw new Exception(data);
+            }
+            
         }
     }
 }

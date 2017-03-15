@@ -1,5 +1,8 @@
 #include "secure_send.h"
 
+#include "../error/error.h"
+#include "secure_makenonce.h"
+
 Secure_CipherText Secure_Encrypt(Secure_Session *session,
     const uint8_t *plaintext, size_t len)
 {

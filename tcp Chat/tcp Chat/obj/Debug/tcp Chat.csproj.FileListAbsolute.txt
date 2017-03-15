@@ -1,0 +1,12 @@
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\obj\Debug\tcp Chat.csprojResolveAssemblyReference.cache
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\bin\Debug\tcp Chat.exe.config
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\bin\Debug\tcp Chat.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\bin\Debug\tcp Chat.pdb
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\obj\Debug\tcp Chat.exe
+c:\users\maxak\onedrive\documents\visual studio 2017\Projects\tcp Chat\tcp Chat\obj\Debug\tcp Chat.pdb
+E:\C#\tcp Chat\tcp Chat\bin\Debug\tcp Chat.exe.config
+E:\C#\tcp Chat\tcp Chat\bin\Debug\tcp Chat.exe
+E:\C#\tcp Chat\tcp Chat\bin\Debug\tcp Chat.pdb
+E:\C#\tcp Chat\tcp Chat\obj\Debug\tcp Chat.csprojResolveAssemblyReference.cache
+E:\C#\tcp Chat\tcp Chat\obj\Debug\tcp Chat.exe
+E:\C#\tcp Chat\tcp Chat\obj\Debug\tcp Chat.pdb

@@ -1,6 +1,9 @@
 #include "network.h"
+
 #include <stdlib.h>
 #include <string.h>
+
+#include "../error/error.h"
 
 int Net_Init()
 {

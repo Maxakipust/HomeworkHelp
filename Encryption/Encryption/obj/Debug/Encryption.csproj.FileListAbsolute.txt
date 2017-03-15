@@ -1,0 +1,6 @@
+P:\Encryption\Encryption\obj\Debug\Encryption.csprojResolveAssemblyReference.cache
+P:\Encryption\Encryption\bin\Debug\Encryption.dll
+P:\Encryption\Encryption\bin\Debug\Encryption.pdb
+P:\Encryption\Encryption\bin\Debug\Sodium.dll
+P:\Encryption\Encryption\obj\Debug\Encryption.dll
+P:\Encryption\Encryption\obj\Debug\Encryption.pdb

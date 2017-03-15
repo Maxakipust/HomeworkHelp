@@ -1,5 +1,7 @@
 #include "secure.h"
 
+#include "../error/error.h"
+
 Secure_Session *Secure_Connect(Secure_PubKey peer, Secure_PubKey pub, Secure_PrivKey priv,
     Net_Addr addr, Net_Port port)
 {

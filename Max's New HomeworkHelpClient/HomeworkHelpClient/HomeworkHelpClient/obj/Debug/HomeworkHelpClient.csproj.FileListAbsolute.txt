@@ -19,6 +19,27 @@ E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.Gen
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
 E:\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.SettingsForm.resources
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csprojResolveAssemblyReference.cache
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.FirstForm.resources
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.HHForm.resources
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.Properties.Resources.resources
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.SettingsForm.resources
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.GenerateResource.Cache
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.pdb
+C:\Users\maxak\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.privateChat.resources
 C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe.config
 C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.exe
 C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.pdb
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.exe
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\bin\Debug\HomeworkHelpClient.pdb
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csprojResolveAssemblyReference.cache
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.FirstForm.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.HHForm.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.privateChat.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.Properties.Resources.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.SettingsForm.resources
+C:\Users\Nick\Source\Repos\HomeworkHelp\Max's New HomeworkHelpClient\HomeworkHelpClient\HomeworkHelpClient\obj\Debug\HomeworkHelpClient.csproj.GenerateResource.Cache
