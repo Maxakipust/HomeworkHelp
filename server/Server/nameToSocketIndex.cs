@@ -8,7 +8,7 @@ namespace Server
 {
     class nameToSocketIndex
     {
-        List<string> names = new List<string>();
+        public List<string> names = new List<string>();
         public nameToSocketIndex()
         {
 
@@ -17,6 +17,13 @@ namespace Server
         {
             names.Add(newName);
         }
+        public void removeName(string name)
+        {
+            for(int i = 0; i < names.Count; i++)
+            {
+                if (names[i] == name) names[i] = "\0";
+            }
+        }
         public int returnIndex(string nameSearch)
         {
             for(int i = 0; i < names.Count; i++)
@@ -24,6 +31,10 @@ namespace Server
                 if (names[i] == nameSearch) return i;
             }
             return 0;
+        }
+        public int howMany()
+        {
+            return names.Count;
         }
     }
 }

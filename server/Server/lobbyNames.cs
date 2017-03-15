@@ -22,8 +22,10 @@ namespace Server
         }
         public void removeFromLobby(string name)
         {
-            if (inLobby.Contains(name))
-                inLobby[inLobby.IndexOf(name)]=null;
+            for (int i = 0; i < inLobby.Count; i++)
+            {
+                if (inLobby[i] == name) inLobby[i] = "\0";
+            }
         }
     }
 }
