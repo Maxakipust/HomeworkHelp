@@ -59,7 +59,7 @@ namespace Server
         void AcceptWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Servers.Add(new TcpSocketServer(Listener.AcceptTcpClient(),msgEvent));
-            sendString(Servers.Count, Servers[Servers.Count-1].id.ToString(), "ID");
+            //sendString(Servers.Count, Servers[Servers.Count-1].id.ToString(), "ID");
         }
 
         public void updateServers()
@@ -86,8 +86,8 @@ namespace Server
 
         public void sendString(int index, string data, string type)
         {
-            if(index>0)
-                Servers[index-1].send(Encoding.ASCII.GetBytes(data), type);
+            if(index>-1)
+                Servers[index].send(Encoding.ASCII.GetBytes(data), type);
         }
     }
 }

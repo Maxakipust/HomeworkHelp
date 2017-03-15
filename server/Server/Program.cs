@@ -23,7 +23,8 @@ namespace Server
             string[] fileNames = Directory.GetFiles("Schools");
             for (int i = 0; i < fileNames.Length; i ++)
             {
-                enumeratedSchools.Add(new school(fileNames[i]));
+                string fname = Path.GetFileName(fileNames[i]);
+                enumeratedSchools.Add(new school(fname.Substring(0,fname.LastIndexOf("."))));
             }
             Console.ReadLine();
         }
@@ -33,6 +34,7 @@ namespace Server
             if (type.StartsWith("lobCon"))
             {
                 string[] args = data.Split('\0');
+                socketNames.addName(args[2]);
                 string fileData = System.IO.File.ReadAllText("lobList.inf");
                 if (args[3] == "1")
                 {
@@ -88,11 +90,8 @@ namespace Server
                                 string part1 = enumeratedSchools[schoolIndex].name + "\0" + enumeratedSchools[schoolIndex].classes[classIndex].className + "\0"; 
                                 for(int k = 0; k < enumeratedSchools[schoolIndex].classes[j].inLobby.Count; k ++)
                                 {
-                                    if(args[2] != enumeratedSchools[schoolIndex].classes[j].inLobby[k])
-                                    {
-                                        string part2 = enumeratedSchools[schoolIndex].classes[classIndex].inLobby[k] + "\0" + args[3];
-                                        cc.sendString(socketNames.returnIndex(enumeratedSchools[schoolIndex].classes[classIndex].inLobby[k]), part1 + part2, "cLobMes");
-                                    }
+                                    string part2 = args[2] + "\0" + args[3];
+                                    cc.sendString(socketNames.returnIndex(enumeratedSchools[schoolIndex].classes[classIndex].inLobby[k]), part1 + part2, "cLobMes");
                                 }
                             }
                         }
