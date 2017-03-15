@@ -31,7 +31,7 @@ namespace HomeworkHelpClient
         List<string> ClassesTaken = new List<string>();
         TextBox nameBox;
         Button finButton;
-        
+
 
         private void FirstForm_Load(object sender, EventArgs e)
         {
@@ -108,7 +108,7 @@ namespace HomeworkHelpClient
         private void FinButton_Click(object sender, EventArgs e)
         {
             string userName = nameBox.Text;
-            using (FileStream fs = File.Exists("settings\\settings.inf")? File.Open("settings\\settings.inf", FileMode.Truncate): File.Create("settings\\settings.inf"))
+            using (FileStream fs = File.Exists("settings\\settings.inf") ? File.Open("settings\\settings.inf", FileMode.Truncate) : File.Create("settings\\settings.inf"))
             {
                 string x = $"school:{selectedSchool}\0class:{String.Join(",", ClassesTaken.Distinct().ToArray())}\0name:{userName}";
                 fs.Write(Encoding.ASCII.GetBytes(x), 0, Encoding.ASCII.GetByteCount(x));
